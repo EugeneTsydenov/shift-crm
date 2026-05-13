@@ -25,6 +25,8 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("org.postgresql:postgresql")
 }
 // Apply a specific Java toolchain to ease working on different environments.
 java {
