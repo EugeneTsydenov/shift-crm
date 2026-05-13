@@ -25,16 +25,17 @@ public class SellerService {
     @Transactional(readOnly = true)
     public List<SellerResponse> findAll() {
         return sellerRepository
-                .findAll()
-                .stream()
-                .map(SellerMapper::toResponse)
-                .toList();
+            .findAll()
+            .stream()
+            .map(SellerMapper::toResponse)
+            .toList();
     }
 
     @Transactional(readOnly = true)
     public SellerResponse findById(Long id) {
-        Seller seller = sellerRepository.findById(id)
-                .orElseThrow(() -> new SellerNotFoundException(id));
+        Seller seller = sellerRepository
+            .findById(id)
+            .orElseThrow(() -> new SellerNotFoundException(id));
 
         return SellerMapper.toResponse(seller);
     }
@@ -43,14 +44,15 @@ public class SellerService {
     public SellerResponse create(SellerRequest request) {
         Seller seller = SellerMapper.toEntity(request);
 
-        sellerRepository.save(seller);
-        return SellerMapper.toResponse(seller);
+        Seller saved = sellerRepository.save(seller);
+        return SellerMapper.toResponse(saved);
     }
 
     @Transactional
     public SellerResponse update(Long id, SellerUpdateRequest request) {
-        Seller seller = sellerRepository.findById(id)
-                .orElseThrow(() -> new SellerNotFoundException(id));
+        Seller seller = sellerRepository
+            .findById(id)
+            .orElseThrow(() -> new SellerNotFoundException(id));
 
         if (request.name() != null) {
             seller.setName(request.name());
@@ -60,14 +62,14 @@ public class SellerService {
             seller.setContactInfo(request.contactInfo());
         }
 
-        sellerRepository.save(seller);
         return SellerMapper.toResponse(seller);
     }
 
     @Transactional
     public void delete(Long id) {
-        Seller seller = sellerRepository.findById(id)
-                .orElseThrow(() -> new SellerNotFoundException(id));
+        Seller seller = sellerRepository
+            .findById(id)
+            .orElseThrow(() -> new SellerNotFoundException(id));
 
         seller.setDeletedAt(LocalDateTime.now());
         sellerRepository.save(seller);

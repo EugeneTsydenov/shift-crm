@@ -8,12 +8,12 @@ public class TransactionMapper {
     private TransactionMapper() {
     }
 
-    public static TransactionResponse toResponse(Transaction tx) {
+    public static TransactionResponse toResponse(Transaction transaction) {
         return new TransactionResponse(
-            tx.getId(),
-            tx.getSeller().getId(),
-            tx.getAmount(),
-            tx.getPaymentType(),
-            tx.getTransactionDate());
+            transaction.getId(),
+            transaction.getSeller().getId(),
+            transaction.getAmount(),
+            transaction.getPaymentType(),
+            transaction.getTransactionDate());
     }
 }
