@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="severity" value="error"/>
+    <property name="charset" value="UTF-8"/>
+    
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="severity" value="warning"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Naming -->
+        <module name="TypeName"/>
+        <module name="MethodName"/>
+        <module name="ConstantName"/>
+        <module name="LocalVariableName"/>
+        <module name="ParameterName"/>
+        
+        <!-- Imports -->
+        <module name="UnusedImports"/>
+        <module name="AvoidStarImport"/>
+        
+        <!-- Style -->
+        <module name="NeedBraces"/>
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        
+        <!-- Spaces -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+        </module>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="GenericWhitespace"/>
+        
+        <!-- Safety -->
+        <module name="MissingSwitchDefault"/>
+        <module name="FallThrough"/>
+        <module name="EqualsHashCode"/>
+        
+        <!-- complexity -->
+        <module name="MethodLength">
+            <property name="tokens" value="METHOD_DEF,CTOR_DEF"/>
+            <property name="max" value="100"/>
+            <property name="severity" value="warning"/>
+        </module>
+    </module>
+</module>

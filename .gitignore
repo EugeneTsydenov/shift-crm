@@ -6,8 +6,6 @@
 
 .gitattriutes
 
-checkstyle.xml
-
 .gradle
 **/build/
 !**/src/**/build/
