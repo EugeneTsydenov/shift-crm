@@ -27,7 +27,7 @@ public class TransactionService {
     @Transactional(readOnly = true)
     public List<TransactionResponse> findAll() {
         return transactionRepository
-                .findAll()
+                .findAllActive()
                 .stream()
                 .map(TransactionMapper::toResponse)
                 .toList();
@@ -40,17 +40,17 @@ public class TransactionService {
         }
 
         return transactionRepository
-            .findAllBySellerId(sellerId)
-            .stream()
-            .map(TransactionMapper::toResponse)
-            .toList();
+                .findAllBySellerId(sellerId)
+                .stream()
+                .map(TransactionMapper::toResponse)
+                .toList();
     }
 
     @Transactional(readOnly = true)
     public TransactionResponse findById(Long id) {
         Transaction transaction = transactionRepository
-            .findById(id)
-            .orElseThrow(() -> new TransactionNotFoundException(id));
+                .findActiveById(id)
+                .orElseThrow(() -> new TransactionNotFoundException(id));
 
         return TransactionMapper.toResponse(transaction);
     }
@@ -58,8 +58,8 @@ public class TransactionService {
     @Transactional
     public TransactionResponse create(TransactionRequest request) {
         Seller seller = sellerRepository
-            .findById(request.sellerId())
-            .orElseThrow(() -> new SellerNotFoundException(request.sellerId()));
+                .findById(request.sellerId())
+                .orElseThrow(() -> new SellerNotFoundException(request.sellerId()));
 
         Transaction transaction = Transaction.create(seller, request.amount(), request.paymentType());
 
