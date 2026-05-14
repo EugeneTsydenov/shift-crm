@@ -8,7 +8,7 @@ Shift CRM is a lightweight backend CRM for managing sellers, transactions, and b
 - Full CRUD for transactions.
 - Analytics for the most productive seller by day, month, quarter, and year.
 - A query for sellers whose total transaction amount in a period is below a given threshold.
-- An extra analytics endpoint that finds the best activity window for a seller by transaction count.
+- An analytics endpoint that finds the best activity window for a seller by transaction count.
 - Centralized error handling with consistent HTTP responses.
 
 ## Tech stack
