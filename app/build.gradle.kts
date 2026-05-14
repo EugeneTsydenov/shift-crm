@@ -22,6 +22,7 @@ dependencies {
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("com.h2database:h2")
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.springframework.boot:spring-boot-starter-web")
