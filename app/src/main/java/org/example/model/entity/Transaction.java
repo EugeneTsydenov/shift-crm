@@ -5,7 +5,10 @@ import java.time.LocalDateTime;
 
 import org.example.model.enums.PaymentType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,8 +27,11 @@ public class Transaction {
     @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    private BigDecimal amount;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(20)")
     private PaymentType paymentType;
+
+    private BigDecimal amount;
     private LocalDateTime transactionDate;
 
     protected Transaction() {
