@@ -7,6 +7,7 @@ import java.util.List;
 import org.example.model.dto.analytics.BestPeriodResponse;
 import org.example.model.dto.analytics.SellerAnalyticsResponse;
 import org.example.service.AnalyticsService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +33,8 @@ public class AnalyticsController {
     @GetMapping("/sellers/below-amount")
     public ResponseEntity<List<SellerAnalyticsResponse>> getSellersWithTransactionsBelowAmount(
             @RequestParam BigDecimal amount,
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to) {
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to) {
         return ResponseEntity.ok(
                 analyticsService.getSellersWithTransactionsBelowAmount(amount, from, to));
     }
